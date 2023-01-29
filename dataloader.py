@@ -1,7 +1,7 @@
 import pybullet as p
 import numpy as np
 
-data_path = ""
+data_path = "file_path"
 data = p.loadURDF(data_path)
 
 observations = []
@@ -16,12 +16,12 @@ for i in range(num_steps):
     obervation, reward, done, _ = env.step(action)
     observations.append(obervation)
     actions.append(reward)
-    done_flags(done)
+    done_flags.append(done)
 
 observations = np.array(observations)
 actions = np.array(actions)
 rewards = np.array(rewards)
 done_flags = np.array(done_flags)
 
-np.save("file_path", observations=observations,actions=actions,rewards=reward,done_flags=done_flags)
+np.save("save_file_path", observations=observations,actions=actions,rewards=reward,done_flags=done_flags)
 p.disconnect()
